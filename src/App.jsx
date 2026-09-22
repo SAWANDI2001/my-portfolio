@@ -26,6 +26,9 @@ function App() {
             <a href="#projects" className="text-slate-300 hover:text-white">
               Projects
             </a>
+            <a href="#education" className="text-slate-300 hover:text-white">
+              Education
+            </a>
             <a href="#contact" className="text-slate-300 hover:text-white">
               Contact
             </a>
@@ -479,6 +482,50 @@ function App() {
                   View Project →
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section
+        id="education"
+        className="border-t border-slate-800 bg-slate-900/50 px-6 py-20"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <p className="text-cyan-400">My Education</p>
+
+            <h2 className="mt-2 text-4xl font-bold">Education</h2>
+          </div>
+
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-sm font-medium text-cyan-400">
+                    Higher National Diploma
+                  </p>
+
+                  <h3 className="mt-2 text-2xl font-bold">
+                    Higher National Diploma in Information Technology
+                  </h3>
+
+                  <p className="mt-3 text-slate-300">
+                    SLIATE - Advanced Technological Institute - Labuduwa
+                  </p>
+                </div>
+
+                <span className="w-fit rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-400">
+                  IT
+                </span>
+              </div>
+
+              <p className="mt-6 leading-7 text-slate-400">
+                Studied software development, web technologies, databases,
+                programming, system development and other information technology
+                concepts.
+              </p>
             </div>
           </div>
         </div>
