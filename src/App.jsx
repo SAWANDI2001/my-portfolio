@@ -191,6 +191,114 @@ function App() {
   </div>
 </section>
 
+{/* Skills Section */}
+<section
+  id="skills"
+  className="border-t border-slate-800 px-6 py-20"
+>
+  <div className="mx-auto max-w-6xl">
+
+    {/* Section Title */}
+    <div className="mb-12 text-center">
+      <p className="text-cyan-400">What I Work With</p>
+
+      <h2 className="mt-2 text-4xl font-bold">
+        My Skills
+      </h2>
+    </div>
+
+    {/* Skills Grid */}
+    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+      {/* Skill Card */}
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">HTML</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Web Structure
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">CSS</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Styling & Responsive Design
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">JavaScript</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Interactive Web Applications
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">React</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Frontend Development
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">PHP</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Backend Development
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">Java</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Application Development
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">MySQL</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Database Management
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">MongoDB</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          NoSQL Database
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">Node.js</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Backend Development
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">Git &amp; GitHub</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Version Control
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">Bootstrap</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          UI Development
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400">
+        <h3 className="text-xl font-semibold">Tailwind CSS</h3>
+        <p className="mt-2 text-sm text-slate-400">
+          Modern UI Styling
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
     </div>
   )
 }
