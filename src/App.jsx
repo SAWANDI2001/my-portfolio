@@ -331,6 +331,158 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="border-t border-slate-800 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          {/* Section Title */}
+          <div className="mb-12 text-center">
+            <p className="text-cyan-400">My Recent Work</p>
+
+            <h2 className="mt-2 text-4xl font-bold">Projects</h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
+              Here are some of the projects I have worked on while learning and
+              developing my software development skills.
+            </p>
+          </div>
+
+          {/* Project Cards */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Project 1 */}
+            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
+              <div className="flex h-48 items-center justify-center bg-slate-800">
+                <span className="text-5xl font-bold text-cyan-400">PRDA</span>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-2xl font-bold">PRDA Website</h3>
+
+                <p className="mt-3 leading-7 text-slate-400">
+                  A web-based system developed for the Southern Provincial Road
+                  Development Authority to provide information and online
+                  services to users.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    PHP
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    MySQL
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    Bootstrap
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    JavaScript
+                  </span>
+                </div>
+
+                <a
+                  href="https://github.com/SAWANDI2001/prda.sp.gov.lk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+                >
+                  View on GitHub →
+                </a>
+              </div>
+            </div>
+
+            {/* Project 2 */}
+            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
+              <div className="flex h-48 items-center justify-center bg-slate-800">
+                <span className="text-5xl font-bold text-cyan-400">VMS</span>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-2xl font-bold">
+                  Vehicle Management System
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-400">
+                  A web-based vehicle management system for managing vehicles,
+                  employees, drivers, requests, repairs and job card
+                  information.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    PHP
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    MySQL
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    Bootstrap
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    JavaScript
+                  </span>
+                </div>
+
+                <a
+                  href="https://github.com/shehara1234203/vehicle_management-system"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+                >
+                  View on GitHub →
+                </a>
+              </div>
+            </div>
+
+            {/* Project 3 */}
+            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
+              <div className="flex h-48 items-center justify-center bg-slate-800">
+                <span className="text-5xl font-bold text-cyan-400">GG</span>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-2xl font-bold">Grocery Grove</h3>
+
+                <p className="mt-3 leading-7 text-slate-400">
+                  An online supermarket application developed to provide a
+                  simple and user-friendly shopping experience with product
+                  management and database integration.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    React
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    Node.js
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    Express
+                  </span>
+
+                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
+                    MongoDB
+                  </span>
+                </div>
+
+                <a
+                  href="#"
+                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+                >
+                  View Project →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
