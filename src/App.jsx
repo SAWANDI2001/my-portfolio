@@ -645,6 +645,35 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-800 px-6 py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
+          <p className="text-sm text-slate-500">
+            © 2026 J.P.S. Nawodya. All rights reserved.
+          </p>
+
+          <div className="flex gap-6">
+            <a
+              href="https://github.com/SAWANDI2001"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-cyan-400"
+            >
+              GitHub
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/j-p-s-nawodya-23739230a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-cyan-400"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
