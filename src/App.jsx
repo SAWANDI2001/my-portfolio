@@ -1,39 +1,138 @@
+import { useState } from "react";
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Navbar */}
-      <nav className="border-b border-slate-800">
+      <nav className="border-b border-slate-800 bg-slate-950/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           {/* Logo */}
           <a href="#" className="text-2xl font-bold">
             Nawodya<span className="text-cyan-400">.</span>
           </a>
 
-          {/* Navigation */}
-          <div className="hidden gap-8 md:flex">
+          {/* Desktop Navigation */}
+          <div className="hidden items-center gap-6 md:flex">
             <a href="#" className="text-cyan-400">
               Home
             </a>
-            <a href="#about" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#about"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               About
             </a>
-            <a href="#skills" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#skills"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               Skills
             </a>
-            <a href="#experience" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#experience"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               Experience
             </a>
-            <a href="#projects" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#projects"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               Projects
             </a>
-            <a href="#education" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#education"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               Education
             </a>
-            <a href="#contact" className="text-slate-300 hover:text-white">
+
+            <a
+              href="#contact"
+              className="text-slate-300 transition hover:text-cyan-400"
+            >
               Contact
             </a>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="rounded-lg border border-slate-700 px-3 py-2 text-xl text-slate-300 md:hidden"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
         </div>
+
+        {menuOpen && (
+  <div className="border-t border-slate-800 px-6 py-5 md:hidden">
+    <div className="flex flex-col gap-4">
+
+      <a
+        href="#"
+        onClick={() => setMenuOpen(false)}
+        className="text-cyan-400"
+      >
+        Home
+      </a>
+
+      <a
+        href="#about"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        About
+      </a>
+
+      <a
+        href="#skills"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        Skills
+      </a>
+
+      <a
+        href="#experience"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        Experience
+      </a>
+
+      <a
+        href="#projects"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        Projects
+      </a>
+
+      <a
+        href="#education"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        Education
+      </a>
+
+      <a
+        href="#contact"
+        onClick={() => setMenuOpen(false)}
+        className="text-slate-300 hover:text-cyan-400"
+      >
+        Contact
+      </a>
+
+    </div>
+  </div>
+)}
       </nav>
 
       {/* Hero Section */}
@@ -560,7 +659,7 @@ function App() {
                   <p className="text-sm text-slate-500">Email</p>
 
                   <a
-                    href="mailto:your-email@gmail.com"
+                    href="mailto:sawandinawodya@gmail.com"
                     className="text-cyan-400 hover:text-cyan-300"
                   >
                     sawandinawodya@gmail.com
