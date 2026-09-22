@@ -51,7 +51,7 @@ function App() {
             </h1>
 
             <h2 className="mt-6 text-2xl font-semibold text-slate-300">
-              Junior Web Developer
+            Software Developer
             </h2>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
@@ -92,7 +92,7 @@ function App() {
                 </div>
 
                 <p className="mt-3 text-slate-400">
-                  Web Developer
+                   Software Developer
                 </p>
               </div>
 
@@ -103,6 +103,93 @@ function App() {
         </div>
 
       </section>
+
+      {/* About Section */}
+<section
+  id="about"
+  className="border-t border-slate-800 bg-slate-900/50 px-6 py-20"
+>
+  <div className="mx-auto max-w-6xl">
+
+    {/* Section Title */}
+    <div className="mb-12 text-center">
+      <p className="text-cyan-400">Get To Know Me</p>
+
+      <h2 className="mt-2 text-4xl font-bold">
+        About Me
+      </h2>
+    </div>
+
+    {/* About Content */}
+    <div className="grid gap-10 md:grid-cols-2">
+
+      {/* Left Side */}
+      <div>
+        <h3 className="text-2xl font-semibold">
+          Software Developer
+        </h3>
+
+        <p className="mt-5 leading-8 text-slate-400">
+          I am a motivated Software Developer with a strong interest
+          in developing web applications and software solutions.
+          I enjoy solving problems, learning new technologies, and
+          building applications that are simple, useful, and
+          user-friendly.
+        </p>
+
+        <p className="mt-4 leading-8 text-slate-400">
+          I have hands-on experience working with front-end
+          development, back-end technologies, databases, and
+          version control. I am continuously improving my technical
+          skills and exploring modern software development
+          technologies.
+        </p>
+      </div>
+
+      {/* Right Side */}
+      <div className="grid grid-cols-2 gap-4">
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-6">
+          <h4 className="text-lg font-semibold text-cyan-400">
+            Education
+          </h4>
+          <p className="mt-2 text-slate-400">
+            Higher National Diploma in Information Technology
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-6">
+          <h4 className="text-lg font-semibold text-cyan-400">
+            Experience
+          </h4>
+          <p className="mt-2 text-slate-400">
+            Software Development Experience
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-6">
+          <h4 className="text-lg font-semibold text-cyan-400">
+            Development
+          </h4>
+          <p className="mt-2 text-slate-400">
+            Web &amp; Software Applications
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-slate-950 p-6">
+          <h4 className="text-lg font-semibold text-cyan-400">
+            Learning
+          </h4>
+          <p className="mt-2 text-slate-400">
+            Always Learning New Technologies
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
     </div>
   )
