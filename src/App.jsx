@@ -530,6 +530,121 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="border-t border-slate-800 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <p className="text-cyan-400">Let's Connect</p>
+
+            <h2 className="mt-2 text-4xl font-bold">Contact Me</h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
+              Interested in working together or have an opportunity? Feel free
+              to get in touch with me.
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+            {/* Contact Information */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
+              <h3 className="text-2xl font-bold">Get In Touch</h3>
+
+              <p className="mt-4 leading-7 text-slate-400">
+                I am open to software development opportunities, internships,
+                and projects where I can learn and contribute my skills.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                <div>
+                  <p className="text-sm text-slate-500">Email</p>
+
+                  <a
+                    href="mailto:your-email@gmail.com"
+                    className="text-cyan-400 hover:text-cyan-300"
+                  >
+                    sawandinawodya@gmail.com
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-sm text-slate-500">GitHub</p>
+
+                  <a
+                    href="https://github.com/SAWANDI2001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 hover:text-cyan-300"
+                  >
+                    github.com/SAWANDI2001
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-sm text-slate-500">LinkedIn</p>
+
+                  <a
+                    href="https://www.linkedin.com/in/j-p-s-nawodya-23739230a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-400 hover:text-cyan-300"
+                  >
+                    LinkedIn Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
+              <form className="space-y-5">
+                <div>
+                  <label className="mb-2 block text-sm text-slate-300">
+                    Name
+                  </label>
+
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm text-slate-300">
+                    Email
+                  </label>
+
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm text-slate-300">
+                    Message
+                  </label>
+
+                  <textarea
+                    rows="5"
+                    placeholder="Write your message..."
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
