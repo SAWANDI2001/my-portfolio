@@ -71,68 +71,66 @@ function App() {
         </div>
 
         {menuOpen && (
-  <div className="border-t border-slate-800 px-6 py-5 md:hidden">
-    <div className="flex flex-col gap-4">
+          <div className="border-t border-slate-800 px-6 py-5 md:hidden">
+            <div className="flex flex-col gap-4">
+              <a
+                href="#"
+                onClick={() => setMenuOpen(false)}
+                className="text-cyan-400"
+              >
+                Home
+              </a>
 
-      <a
-        href="#"
-        onClick={() => setMenuOpen(false)}
-        className="text-cyan-400"
-      >
-        Home
-      </a>
+              <a
+                href="#about"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                About
+              </a>
 
-      <a
-        href="#about"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        About
-      </a>
+              <a
+                href="#skills"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                Skills
+              </a>
 
-      <a
-        href="#skills"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        Skills
-      </a>
+              <a
+                href="#experience"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                Experience
+              </a>
 
-      <a
-        href="#experience"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        Experience
-      </a>
+              <a
+                href="#projects"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                Projects
+              </a>
 
-      <a
-        href="#projects"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        Projects
-      </a>
+              <a
+                href="#education"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                Education
+              </a>
 
-      <a
-        href="#education"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        Education
-      </a>
-
-      <a
-        href="#contact"
-        onClick={() => setMenuOpen(false)}
-        className="text-slate-300 hover:text-cyan-400"
-      >
-        Contact
-      </a>
-
-    </div>
-  </div>
-)}
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-cyan-400"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -152,13 +150,15 @@ function App() {
             </h2>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
-              I build responsive and user-friendly web applications using modern
-              web technologies. I enjoy learning new technologies and turning
-              ideas into practical solutions.
+              I am a Software Developer with hands-on experience in web
+              application development, databases, and modern development
+              technologies. I enjoy building practical, user-friendly solutions
+              and continuously improving my technical skills.
             </p>
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4">
+              {/* Projects Button */}
               <a
                 href="#projects"
                 className="rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400"
@@ -166,22 +166,66 @@ function App() {
                 View My Projects
               </a>
 
+              {/* Contact Button */}
               <a
                 href="#contact"
                 className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400"
               >
                 Contact Me
               </a>
+
+              {/* Download CV */}
+              <a
+                href="/Nawodya-CV.pdf"
+                download
+                className="rounded-lg border border-cyan-400 px-6 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400 hover:text-slate-950"
+              >
+                Download CV
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="mt-8 flex gap-6">
+              <a
+                href="https://github.com/SAWANDI2001"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 transition hover:text-cyan-400"
+              >
+                GitHub
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/j-p-s-nawodya-23739230a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 transition hover:text-cyan-400"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
 
           {/* Right Side */}
           <div className="flex justify-center">
-            <div className="flex h-72 w-72 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-900 shadow-2xl shadow-cyan-500/10 md:h-96 md:w-96">
-              <div className="text-center">
-                <div className="text-7xl font-bold text-cyan-400">JPSN</div>
+            <div className="relative">
+              {/* Glow */}
+              <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-3xl"></div>
 
-                <p className="mt-3 text-slate-400">Software Developer</p>
+              {/* Profile Image */}
+              <div className="relative rounded-full border-4 border-cyan-400/40 p-2 shadow-2xl shadow-cyan-500/20">
+                <img
+                  src="/profile.jpeg"
+                  alt="J.P.S. Nawodya"
+                  className="h-72 w-72 rounded-full object-cover md:h-96 md:w-96"
+                />
+              </div>
+
+              {/* Small Badge */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-slate-700 bg-slate-900 px-5 py-2 shadow-lg">
+                <span className="text-sm font-semibold text-cyan-400">
+                  Software Developer
+                </span>
               </div>
             </div>
           </div>
