@@ -3,6 +3,45 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [projects, setProjects] = useState([]);
 
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactForm),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      setContactMessage("Message sent successfully!");
+
+      setContactForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setContactMessage("Failed to send message.");
+    }
+  };
+
+  const [contactMessage, setContactMessage] = useState("");
+
   useEffect(() => {
     fetch("http://localhost:5000/api/projects")
       .then((response) => response.json())
@@ -144,9 +183,6 @@ function App() {
             </div>
           </div>
         )}
-
-
-        
       </nav>
 
       {/* Hero Section */}
@@ -509,75 +545,75 @@ function App() {
             </p>
           </div>
 
-         {/* Project Cards */}
-<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-  {projects.map((project) => (
-    <div
-      key={project._id}
-      className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400"
-    >
-      {/* Project Image / Placeholder */}
-      <div className="flex h-48 items-center justify-center bg-slate-800">
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <span className="text-5xl font-bold text-cyan-400">
-            {project.title.substring(0, 2).toUpperCase()}
-          </span>
-        )}
-      </div>
+          {/* Project Cards */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <div
+                key={project._id}
+                className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400"
+              >
+                {/* Project Image / Placeholder */}
+                <div className="flex h-48 items-center justify-center bg-slate-800">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-5xl font-bold text-cyan-400">
+                      {project.title.substring(0, 2).toUpperCase()}
+                    </span>
+                  )}
+                </div>
 
-      <div className="p-6">
-        <h3 className="text-2xl font-bold">{project.title}</h3>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold">{project.title}</h3>
 
-        <p className="mt-3 leading-7 text-slate-400">
-          {project.description}
-        </p>
+                  <p className="mt-3 leading-7 text-slate-400">
+                    {project.description}
+                  </p>
 
-        {/* Technologies */}
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.technologies.map((technology, index) => (
-            <span
-              key={index}
-              className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400"
-            >
-              {technology}
-            </span>
-          ))}
+                  {/* Technologies */}
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.technologies.map((technology, index) => (
+                      <span
+                        key={index}
+                        className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400"
+                      >
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* GitHub */}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+                    >
+                      View on GitHub →
+                    </a>
+                  )}
+
+                  {/* Live Demo */}
+                  {project.liveDemo && (
+                    <a
+                      href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-5 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+                    >
+                      Live Demo →
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-        {/* GitHub */}
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
-          >
-            View on GitHub →
-          </a>
-        )}
-
-        {/* Live Demo */}
-        {project.liveDemo && (
-          <a
-            href={project.liveDemo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-5 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
-          >
-            Live Demo →
-          </a>
-        )}
-      </div>
-    </div>
-  ))}
-</div>
-</div>
       </section>
 
       {/* Education Section */}
@@ -690,7 +726,7 @@ function App() {
 
             {/* Contact Form */}
             <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
-              <form className="space-y-5">
+              <form onSubmit={handleContactSubmit} className="space-y-5">
                 <div>
                   <label className="mb-2 block text-sm text-slate-300">
                     Name
@@ -699,6 +735,13 @@ function App() {
                   <input
                     type="text"
                     placeholder="Your name"
+                    value={contactForm.name}
+                    onChange={(e) =>
+                      setContactForm({
+                        ...contactForm,
+                        name: e.target.value,
+                      })
+                    }
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
                   />
                 </div>
@@ -711,6 +754,13 @@ function App() {
                   <input
                     type="email"
                     placeholder="your@email.com"
+                    value={contactForm.email}
+                    onChange={(e) =>
+                      setContactForm({
+                        ...contactForm,
+                        email: e.target.value,
+                      })
+                    }
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
                   />
                 </div>
@@ -723,6 +773,13 @@ function App() {
                   <textarea
                     rows="5"
                     placeholder="Write your message..."
+                    value={contactForm.message}
+                    onChange={(e) =>
+                      setContactForm({
+                        ...contactForm,
+                        message: e.target.value,
+                      })
+                    }
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-cyan-400"
                   ></textarea>
                 </div>
@@ -733,6 +790,10 @@ function App() {
                 >
                   Send Message
                 </button>
+
+                {contactMessage && (
+                  <p className="text-center text-cyan-400">{contactMessage}</p>
+                )}
               </form>
             </div>
           </div>
