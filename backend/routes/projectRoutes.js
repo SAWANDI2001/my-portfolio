@@ -45,4 +45,30 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Update a project
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedProject = await Project.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({
+        message: "Project not found",
+      });
+    }
+
+    res.json(updatedProject);
+  } catch (error) {
+    res.status(400).json({
+      message: "Failed to update project",
+      error: error.message,
+    });
+  }
+});
+
+
+
 module.exports = router;
