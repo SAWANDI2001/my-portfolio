@@ -1,22 +1,15 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
+
+const projectRoutes = require("./routes/projectRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((error) => {
-    console.error("MongoDB Connection Error:", error.message);
-  });
 
 // Test Route
 app.get("/", (req, res) => {
@@ -25,8 +18,30 @@ app.get("/", (req, res) => {
   });
 });
 
+// Project Routes
+app.use("/api/projects", projectRoutes);
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// MongoDB Connection + Start Server
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(async () => {
+    console.log("MongoDB Connected");
+    console.log("Database:", mongoose.connection.name);
+    console.log("Ready State:", mongoose.connection.readyState);
+
+    try {
+      await mongoose.connection.db.admin().ping();
+      console.log("MongoDB Ping Successful");
+    } catch (error) {
+      console.error("MongoDB Ping Failed:", error.message);
+    }
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("MongoDB Connection Error:", error.message);
+  });

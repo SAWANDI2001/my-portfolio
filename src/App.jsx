@@ -1,6 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/projects")
+      .then((response) => response.json())
+      .then((data) => {
+        setProjects(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching projects:", error);
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Navbar */}
@@ -131,6 +144,9 @@ function App() {
             </div>
           </div>
         )}
+
+
+        
       </nav>
 
       {/* Hero Section */}
@@ -493,141 +509,75 @@ function App() {
             </p>
           </div>
 
-          {/* Project Cards */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Project 1 */}
-            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
-              <div className="flex h-48 items-center justify-center bg-slate-800">
-                <span className="text-5xl font-bold text-cyan-400">PRDA</span>
-              </div>
+         {/* Project Cards */}
+<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {projects.map((project) => (
+    <div
+      key={project._id}
+      className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400"
+    >
+      {/* Project Image / Placeholder */}
+      <div className="flex h-48 items-center justify-center bg-slate-800">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <span className="text-5xl font-bold text-cyan-400">
+            {project.title.substring(0, 2).toUpperCase()}
+          </span>
+        )}
+      </div>
 
-              <div className="p-6">
-                <h3 className="text-2xl font-bold">PRDA Website</h3>
+      <div className="p-6">
+        <h3 className="text-2xl font-bold">{project.title}</h3>
 
-                <p className="mt-3 leading-7 text-slate-400">
-                  A web-based system developed for the Southern Provincial Road
-                  Development Authority to provide information and online
-                  services to users.
-                </p>
+        <p className="mt-3 leading-7 text-slate-400">
+          {project.description}
+        </p>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    PHP
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    MySQL
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    Bootstrap
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    JavaScript
-                  </span>
-                </div>
-
-                <a
-                  href="https://github.com/SAWANDI2001/prda.sp.gov.lk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
-                >
-                  View on GitHub →
-                </a>
-              </div>
-            </div>
-
-            {/* Project 2 */}
-            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
-              <div className="flex h-48 items-center justify-center bg-slate-800">
-                <span className="text-5xl font-bold text-cyan-400">VMS</span>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-2xl font-bold">
-                  Vehicle Management System
-                </h3>
-
-                <p className="mt-3 leading-7 text-slate-400">
-                  A web-based vehicle management system for managing vehicles,
-                  employees, drivers, requests, repairs and job card
-                  information.
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    PHP
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    MySQL
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    Bootstrap
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    JavaScript
-                  </span>
-                </div>
-
-                <a
-                  href="https://github.com/shehara1234203/vehicle_management-system"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
-                >
-                  View on GitHub →
-                </a>
-              </div>
-            </div>
-
-            {/* Project 3 */}
-            <div className="group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition duration-300 hover:-translate-y-2 hover:border-cyan-400">
-              <div className="flex h-48 items-center justify-center bg-slate-800">
-                <span className="text-5xl font-bold text-cyan-400">GG</span>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-2xl font-bold">Grocery Grove</h3>
-
-                <p className="mt-3 leading-7 text-slate-400">
-                  An online supermarket application developed to provide a
-                  simple and user-friendly shopping experience with product
-                  management and database integration.
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    React
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    Node.js
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    Express
-                  </span>
-
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400">
-                    MongoDB
-                  </span>
-                </div>
-
-                <a
-                  href="#"
-                  className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
-                >
-                  View Project →
-                </a>
-              </div>
-            </div>
-          </div>
+        {/* Technologies */}
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.technologies.map((technology, index) => (
+            <span
+              key={index}
+              className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400"
+            >
+              {technology}
+            </span>
+          ))}
         </div>
+
+        {/* GitHub */}
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+          >
+            View on GitHub →
+          </a>
+        )}
+
+        {/* Live Demo */}
+        {project.liveDemo && (
+          <a
+            href={project.liveDemo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-5 inline-block font-semibold text-cyan-400 hover:text-cyan-300"
+          >
+            Live Demo →
+          </a>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+</div>
       </section>
 
       {/* Education Section */}
