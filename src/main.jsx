@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import AdminLogin from "./AdminLogin.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
+import AdminProjects from "./AdminProjects.jsx";
 
 const path = window.location.pathname;
 
@@ -13,6 +14,8 @@ if (path === "/admin/login") {
   page = <AdminLogin />;
 } else if (path === "/admin/dashboard") {
   page = <AdminDashboard />;
+} else if (path === "/admin/projects") {
+  page = <AdminProjects />;
 } else {
   page = <App />;
 }

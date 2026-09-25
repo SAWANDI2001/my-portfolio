@@ -139,11 +139,14 @@ function AdminDashboard() {
             </p>
 
             <button
-              type="button"
-              className="mt-6 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
-            >
-              Manage Projects
-            </button>
+  type="button"
+  onClick={() => {
+    window.location.href = "/admin/projects";
+  }}
+  className="mt-6 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
+>
+  Manage Projects
+</button>
           </div>
 
           {/* Messages */}
