@@ -1,10 +1,25 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import AdminLogin from "./AdminLogin.jsx";
+import AdminDashboard from "./AdminDashboard.jsx";
 
-createRoot(document.getElementById('root')).render(
+const path = window.location.pathname;
+
+let page;
+
+if (path === "/admin/login") {
+  page = <AdminLogin />;
+} else if (path === "/admin/dashboard") {
+  page = <AdminDashboard />;
+} else {
+  page = <App />;
+}
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    {page}
+  </StrictMode>
+);
+
