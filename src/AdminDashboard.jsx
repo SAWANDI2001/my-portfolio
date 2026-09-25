@@ -1,13 +1,43 @@
+import { useEffect, useState } from "react";
 
-import { useEffect } from "react";
+function AdminDashboard() {
+  const [stats, setStats] = useState({
+    projects: 0,
+    messages: 0,
+    skills: 0,
+  });
 
-export default function AdminDashboard() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
 
     if (!token) {
       window.location.href = "/admin/login";
+      return;
     }
+
+    const fetchStats = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/dashboard/stats"
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+
+        setStats(data);
+      } catch (error) {
+        console.error("Dashboard stats error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
   }, []);
 
   const handleLogout = () => {
@@ -17,17 +47,13 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      {/* Navbar */}
       <nav className="border-b border-slate-800 bg-slate-900">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div>
             <h1 className="text-2xl font-bold">
               Portfolio <span className="text-cyan-400">Admin</span>
             </h1>
-
-            <p className="text-sm text-slate-400">
-              Admin Dashboard
-            </p>
+            <p className="text-sm text-slate-400">Admin Dashboard</p>
           </div>
 
           <button
@@ -40,7 +66,6 @@ export default function AdminDashboard() {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="mx-auto max-w-7xl px-6 py-10">
         <div className="mb-10">
           <p className="text-cyan-400">Welcome back</p>
@@ -54,7 +79,6 @@ export default function AdminDashboard() {
           </p>
         </div>
 
-        {/* Statistics */}
         <div className="grid gap-6 md:grid-cols-3">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
@@ -63,7 +87,7 @@ export default function AdminDashboard() {
             </p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
-              0
+              {loading ? "..." : stats.projects}
             </h3>
 
             <p className="mt-2 text-sm text-slate-500">
@@ -78,7 +102,7 @@ export default function AdminDashboard() {
             </p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
-              0
+              {loading ? "..." : stats.messages}
             </h3>
 
             <p className="mt-2 text-sm text-slate-500">
@@ -93,7 +117,7 @@ export default function AdminDashboard() {
             </p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
-              0
+              {loading ? "..." : stats.skills}
             </h3>
 
             <p className="mt-2 text-sm text-slate-500">
@@ -102,7 +126,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Management Cards */}
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
@@ -111,7 +134,8 @@ export default function AdminDashboard() {
             </h3>
 
             <p className="mt-3 leading-7 text-slate-400">
-              Add, edit and delete projects displayed on your portfolio.
+              Add, edit and delete projects displayed on your
+              portfolio.
             </p>
 
             <button
@@ -129,7 +153,8 @@ export default function AdminDashboard() {
             </h3>
 
             <p className="mt-3 leading-7 text-slate-400">
-              View messages submitted through your portfolio contact form.
+              View messages submitted through your portfolio
+              contact form.
             </p>
 
             <button
@@ -145,3 +170,4 @@ export default function AdminDashboard() {
   );
 }
 
+export default AdminDashboard;
