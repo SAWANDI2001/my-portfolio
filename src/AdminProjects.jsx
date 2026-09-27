@@ -64,6 +64,7 @@ function AdminProjects() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
         body: JSON.stringify({
           ...formData,
@@ -127,7 +128,12 @@ function AdminProjects() {
     try {
       const response = await fetch(
         `http://localhost:5000/api/projects/${projectId}`,
-        { method: "DELETE" },
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
+        },
       );
 
       const data = await response.json();
@@ -161,6 +167,7 @@ function AdminProjects() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
           },
           body: JSON.stringify({
             ...formData,

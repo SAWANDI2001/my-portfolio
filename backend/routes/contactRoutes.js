@@ -4,7 +4,7 @@ const Message = require("../models/Message");
 
 const router = express.Router();
 
-// Send contact message
+// Send contact message - Public
 router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;

@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const Message = require("../models/Message");
+const authMiddleware = require("../middleware/authMiddleware");
 
-// Get all messages
-router.get("/", async (req, res) => {
+// Get all messages - Admin only
+router.get("/", authMiddleware, async (req, res) => {
   try {
     const messages = await Message.find().sort({ createdAt: -1 });
 
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Create a message
+// Create a message - Public
 router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -39,8 +40,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Delete a message
-router.delete("/:id", async (req, res) => {
+// Delete a message - Admin only
+router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const deletedMessage = await Message.findByIdAndDelete(req.params.id);
 

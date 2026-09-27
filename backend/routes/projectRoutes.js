@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Project = require("../models/Project");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// Get all projects
+// Get all projects - Public
 router.get("/", async (req, res) => {
   try {
     console.log("----- PROJECT TEST -----");
@@ -30,8 +31,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add a new project
-router.post("/", async (req, res) => {
+// Add a new project - Admin only
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const project = new Project(req.body);
     const savedProject = await project.save();
@@ -45,13 +46,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update a project
-router.put("/:id", async (req, res) => {
+// Update a project - Admin only
+router.put("/:id", authMiddleware, async (req, res) => {
   try {
     const updatedProject = await Project.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!updatedProject) {
@@ -69,11 +70,10 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+// Delete a project - Admin only
+router.delete("/:id", authMiddleware, async (req, res) => {
   try {
-    const deletedProject = await Project.findByIdAndDelete(
-      req.params.id
-    );
+    const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
     if (!deletedProject) {
       return res.status(404).json({
@@ -94,6 +94,5 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
-
 
 module.exports = router;

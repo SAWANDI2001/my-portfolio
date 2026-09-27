@@ -14,7 +14,11 @@ function AdminMessages() {
 
     const fetchMessages = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/messages");
+        const response = await fetch("http://localhost:5000/api/messages", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         const data = await response.json();
 
@@ -41,10 +45,15 @@ function AdminMessages() {
     if (!confirmDelete) return;
 
     try {
+      const token = localStorage.getItem("adminToken");
+
       const response = await fetch(
         `http://localhost:5000/api/messages/${messageId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
 
