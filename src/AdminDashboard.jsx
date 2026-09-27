@@ -20,7 +20,7 @@ function AdminDashboard() {
     const fetchStats = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/dashboard/stats"
+          "http://localhost:5000/api/dashboard/stats",
         );
 
         const data = await response.json();
@@ -70,9 +70,7 @@ function AdminDashboard() {
         <div className="mb-10">
           <p className="text-cyan-400">Welcome back</p>
 
-          <h2 className="mt-2 text-4xl font-bold">
-            Dashboard
-          </h2>
+          <h2 className="mt-2 text-4xl font-bold">Dashboard</h2>
 
           <p className="mt-3 text-slate-400">
             Manage your portfolio content from here.
@@ -82,86 +80,71 @@ function AdminDashboard() {
         <div className="grid gap-6 md:grid-cols-3">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <p className="text-sm text-slate-400">
-              Total Projects
-            </p>
+            <p className="text-sm text-slate-400">Total Projects</p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
               {loading ? "..." : stats.projects}
             </h3>
 
-            <p className="mt-2 text-sm text-slate-500">
-              Portfolio projects
-            </p>
+            <p className="mt-2 text-sm text-slate-500">Portfolio projects</p>
           </div>
 
           {/* Messages */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <p className="text-sm text-slate-400">
-              Total Messages
-            </p>
+            <p className="text-sm text-slate-400">Total Messages</p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
               {loading ? "..." : stats.messages}
             </h3>
 
-            <p className="mt-2 text-sm text-slate-500">
-              Contact messages
-            </p>
+            <p className="mt-2 text-sm text-slate-500">Contact messages</p>
           </div>
 
           {/* Skills */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <p className="text-sm text-slate-400">
-              Total Skills
-            </p>
+            <p className="text-sm text-slate-400">Total Skills</p>
 
             <h3 className="mt-3 text-4xl font-bold text-cyan-400">
               {loading ? "..." : stats.skills}
             </h3>
 
-            <p className="mt-2 text-sm text-slate-500">
-              Technical skills
-            </p>
+            <p className="mt-2 text-sm text-slate-500">Technical skills</p>
           </div>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h3 className="text-2xl font-bold">
-              Projects
-            </h3>
+            <h3 className="text-2xl font-bold">Projects</h3>
 
             <p className="mt-3 leading-7 text-slate-400">
-              Add, edit and delete projects displayed on your
-              portfolio.
-            </p>
-
-            <button
-  type="button"
-  onClick={() => {
-    window.location.href = "/admin/projects";
-  }}
-  className="mt-6 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
->
-  Manage Projects
-</button>
-          </div>
-
-          {/* Messages */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h3 className="text-2xl font-bold">
-              Messages
-            </h3>
-
-            <p className="mt-3 leading-7 text-slate-400">
-              View messages submitted through your portfolio
-              contact form.
+              Add, edit and delete projects displayed on your portfolio.
             </p>
 
             <button
               type="button"
+              onClick={() => {
+                window.location.href = "/admin/projects";
+              }}
+              className="mt-6 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
+            >
+              Manage Projects
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <h3 className="text-2xl font-bold">Messages</h3>
+
+            <p className="mt-3 leading-7 text-slate-400">
+              View messages submitted through your portfolio contact form.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = "/admin/messages";
+              }}
               className="mt-6 rounded-lg border border-cyan-400 px-5 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400 hover:text-slate-950"
             >
               View Messages

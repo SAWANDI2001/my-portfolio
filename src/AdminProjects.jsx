@@ -504,13 +504,13 @@ function AdminProjects() {
                     >
                       Edit
                     </button>
-<button
-  type="button"
-  onClick={() => handleDeleteProject(project._id)}
-  className="flex-1 rounded-lg border border-red-500 px-4 py-2 text-sm font-semibold text-red-400 transition hover:bg-red-500 hover:text-white"
->
-  Delete
-</button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteProject(project._id)}
+                      className="flex-1 rounded-lg border border-red-500 px-4 py-2 text-sm font-semibold text-red-400 transition hover:bg-red-500 hover:text-white"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
@@ -521,7 +521,5 @@ function AdminProjects() {
     </div>
   );
 }
-
-
 
 export default AdminProjects;

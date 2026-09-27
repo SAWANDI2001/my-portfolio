@@ -1,5 +1,6 @@
 const express = require("express");
 const Contact = require("../models/Contact");
+const Message = require("../models/Message");
 
 const router = express.Router();
 
@@ -14,6 +15,7 @@ router.post("/", async (req, res) => {
       });
     }
 
+    // Save to Contact collection
     const contact = new Contact({
       name,
       email,
@@ -21,6 +23,15 @@ router.post("/", async (req, res) => {
     });
 
     const savedContact = await contact.save();
+
+    // Save to Message collection for Admin Messages
+    const newMessage = new Message({
+      name,
+      email,
+      message,
+    });
+
+    await newMessage.save();
 
     res.status(201).json({
       message: "Message sent successfully",

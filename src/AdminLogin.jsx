@@ -47,9 +47,7 @@ function AdminLogin() {
         <div className="mb-8 text-center">
           <p className="text-cyan-400">Portfolio Admin</p>
 
-          <h1 className="mt-2 text-3xl font-bold text-white">
-            Admin Login
-          </h1>
+          <h1 className="mt-2 text-3xl font-bold text-white">Admin Login</h1>
 
           <p className="mt-3 text-sm text-slate-400">
             Sign in to manage your portfolio

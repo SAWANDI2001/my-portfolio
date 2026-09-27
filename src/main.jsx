@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import AdminLogin from "./AdminLogin.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
 import AdminProjects from "./AdminProjects.jsx";
+import AdminMessages from "./AdminMessages.jsx";
 
 const path = window.location.pathname;
 
@@ -16,6 +17,8 @@ if (path === "/admin/login") {
   page = <AdminDashboard />;
 } else if (path === "/admin/projects") {
   page = <AdminProjects />;
+} else if (path === "/admin/messages") {
+  page = <AdminMessages />;
 } else {
   page = <App />;
 }
@@ -25,4 +28,3 @@ createRoot(document.getElementById("root")).render(
     {page}
   </StrictMode>
 );
-
