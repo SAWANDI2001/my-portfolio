@@ -9,6 +9,11 @@ function AdminDashboard() {
 
   const [loading, setLoading] = useState(true);
 
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    window.location.href = "/admin/login";
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
 
@@ -21,6 +26,11 @@ function AdminDashboard() {
       try {
         const response = await fetch(
           "http://localhost:5000/api/dashboard/stats",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
         );
 
         const data = await response.json();
@@ -40,11 +50,6 @@ function AdminDashboard() {
     fetchStats();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    window.location.href = "/admin/login";
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <nav className="border-b border-slate-800 bg-slate-900">
@@ -53,13 +58,15 @@ function AdminDashboard() {
             <h1 className="text-2xl font-bold">
               Portfolio <span className="text-cyan-400">Admin</span>
             </h1>
+
             <p className="text-sm text-slate-400">Admin Dashboard</p>
           </div>
 
+          {/* Logout */}
           <button
             type="button"
             onClick={handleLogout}
-            className="rounded-lg border border-red-500 px-4 py-2 text-sm font-semibold text-red-400 transition hover:bg-red-500 hover:text-white"
+            className="rounded-lg bg-red-500 px-5 py-3 font-semibold text-white transition hover:bg-red-600"
           >
             Logout
           </button>
@@ -77,6 +84,7 @@ function AdminDashboard() {
           </p>
         </div>
 
+        {/* Statistics */}
         <div className="grid gap-6 md:grid-cols-3">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
@@ -112,6 +120,7 @@ function AdminDashboard() {
           </div>
         </div>
 
+        {/* Management */}
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {/* Projects */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">

@@ -1,10 +1,12 @@
 const express = require("express");
 const Project = require("../models/Project");
 const Contact = require("../models/Contact");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.get("/stats", async (req, res) => {
+// Dashboard Stats - Admin only
+router.get("/stats", authMiddleware, async (req, res) => {
   try {
     const projectCount = await Project.countDocuments();
     const messageCount = await Contact.countDocuments();

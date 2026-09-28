@@ -33,6 +33,7 @@ function AdminLogin() {
       localStorage.setItem("adminToken", data.token);
 
       setMessage("Login successful!");
+      window.location.href = "/admin/dashboard";
     } catch (error) {
       console.error("Login error:", error);
       setMessage(error.message || "Login failed");
