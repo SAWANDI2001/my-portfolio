@@ -22,6 +22,13 @@ function AdminMessages() {
 
         const data = await response.json();
 
+        // Invalid or expired token
+        if (response.status === 401) {
+          localStorage.removeItem("adminToken");
+          window.location.href = "/admin/login";
+          return;
+        }
+
         if (!response.ok) {
           throw new Error(data.message || "Failed to fetch messages");
         }
@@ -58,6 +65,13 @@ function AdminMessages() {
       );
 
       const data = await response.json();
+
+      // Invalid or expired token
+      if (response.status === 401) {
+        localStorage.removeItem("adminToken");
+        window.location.href = "/admin/login";
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(data.message || "Failed to delete message");

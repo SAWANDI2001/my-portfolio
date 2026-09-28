@@ -35,6 +35,12 @@ function AdminDashboard() {
 
         const data = await response.json();
 
+        if (response.status === 401) {
+          localStorage.removeItem("adminToken");
+          window.location.href = "/admin/login";
+          return;
+        }
+
         if (!response.ok) {
           throw new Error(data.message);
         }

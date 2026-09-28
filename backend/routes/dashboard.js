@@ -1,6 +1,6 @@
 const express = require("express");
 const Project = require("../models/Project");
-const Contact = require("../models/Contact");
+const Message = require("../models/Message");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/stats", authMiddleware, async (req, res) => {
   try {
     const projectCount = await Project.countDocuments();
-    const messageCount = await Contact.countDocuments();
+    const messageCount = await Message.countDocuments();
 
     res.json({
       projects: projectCount,
