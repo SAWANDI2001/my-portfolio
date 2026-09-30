@@ -1,8 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+const projects = [
+  {
+    _id: "grocery-grove",
+    title: "Grocery Grove",
+    description: "A grocery-focused application project.",
+    technologies: [],
+    image: "/projects/grocery-grove.jpeg",
+  },
+  {
+    _id: "prda",
+    title: "PRDA",
+    description: "A project included in my software development portfolio.",
+    technologies: [],
+    image: "/projects/prda.jpeg",
+  },
+  {
+    _id: "vms",
+    title: "VMS",
+    description: "A project included in my software development portfolio.",
+    technologies: [],
+    image: "/projects/vms.jpeg",
+  },
+];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [projects, setProjects] = useState([]);
 
   const [contactForm, setContactForm] = useState({
     name: "",
@@ -10,59 +33,21 @@ function App() {
     message: "",
   });
 
-  const handleContactSubmit = async (e) => {
+  const handleContactSubmit = (e) => {
     e.preventDefault();
 
-    setContactLoading(true);
-    setContactMessage("");
+    const subject = encodeURIComponent(`Portfolio message from ${contactForm.name}`);
+    const body = encodeURIComponent(
+      `Name: ${contactForm.name}\nEmail: ${contactForm.email}\n\n${contactForm.message}`,
+    );
 
-    try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contactForm),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      setContactMessage("Message sent successfully!");
-
-      setContactForm({
-        name: "",
-        email: "",
-        message: "",
-      });
-
-      setTimeout(() => {
-        setContactMessage("");
-      }, 3000);
-    } catch (error) {
-      console.error("Contact error:", error);
-      setContactMessage("Failed to send message.");
-    } finally {
-      setContactLoading(false);
-    }
+    window.location.assign(
+      `mailto:sawandinawodya@gmail.com?subject=${subject}&body=${body}`,
+    );
+    setContactMessage("Your email app will open with the message ready to send.");
   };
 
   const [contactMessage, setContactMessage] = useState("");
-  const [contactLoading, setContactLoading] = useState(false);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
-      .then((response) => response.json())
-      .then((data) => {
-        setProjects(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching projects:", error);
-      });
-  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -837,10 +822,9 @@ function App() {
 
                 <button
                   type="submit"
-                  disabled={contactLoading}
                   className="w-full rounded-lg bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {contactLoading ? "Sending..." : "Send Message"}
+                  Open Email App
                 </button>
 
                 {contactMessage && (
