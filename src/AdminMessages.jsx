@@ -4,11 +4,16 @@ function AdminMessages() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    window.location.href = `${import.meta.env.BASE_URL}admin/login`;
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
 
     if (!token) {
-      window.location.href = "/admin/login";
+      window.location.href = `${import.meta.env.BASE_URL}admin/login`;
       return;
     }
 
@@ -25,7 +30,7 @@ function AdminMessages() {
         // Invalid or expired token
         if (response.status === 401) {
           localStorage.removeItem("adminToken");
-          window.location.href = "/admin/login";
+          window.location.href = `${import.meta.env.BASE_URL}admin/login`;
           return;
         }
 
@@ -69,7 +74,7 @@ function AdminMessages() {
       // Invalid or expired token
       if (response.status === 401) {
         localStorage.removeItem("adminToken");
-        window.location.href = "/admin/login";
+        window.location.href = `${import.meta.env.BASE_URL}admin/login`;
         return;
       }
 
@@ -107,15 +112,24 @@ function AdminMessages() {
             <p className="text-sm text-slate-400">Message Management</p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              window.location.href = `${import.meta.env.BASE_URL}admin/dashboard`;
-            }}
-            className="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
-          >
-            ← Dashboard
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = `${import.meta.env.BASE_URL}admin/dashboard`;
+              }}
+              className="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              ← Dashboard
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </nav>
 

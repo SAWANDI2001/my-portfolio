@@ -11,14 +11,14 @@ function AdminDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    window.location.href = "/admin/login";
+    window.location.href = `${import.meta.env.BASE_URL}admin/login`;
   };
 
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
 
     if (!token) {
-      window.location.href = "/admin/login";
+      window.location.href = `${import.meta.env.BASE_URL}admin/login`;
       return;
     }
 
@@ -37,7 +37,7 @@ function AdminDashboard() {
 
         if (response.status === 401) {
           localStorage.removeItem("adminToken");
-          window.location.href = "/admin/login";
+          window.location.href = `${import.meta.env.BASE_URL}admin/login`;
           return;
         }
 
