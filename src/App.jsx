@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminLogin from "./AdminLogin.jsx";
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 
@@ -50,6 +51,10 @@ function App() {
   };
 
   const [contactMessage, setContactMessage] = useState("");
+
+  if (window.location.pathname === assetUrl("admin/login")) {
+    return <AdminLogin />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
