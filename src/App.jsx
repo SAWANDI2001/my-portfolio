@@ -1,34 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminLogin from "./AdminLogin.jsx";
+import AdminDashboard from "./AdminDashboard.jsx";
+import AdminProjects from "./AdminProjects.jsx";
+import AdminMessages from "./AdminMessages.jsx";
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 
-const projects = [
-  {
-    _id: "grocery-grove",
-    title: "Grocery Grove",
-    description: "A grocery-focused application project.",
-    technologies: [],
-    image: assetUrl("projects/grocery-grove.jpeg"),
-  },
-  {
-    _id: "prda",
-    title: "PRDA",
-    description: "A project included in my software development portfolio.",
-    technologies: [],
-    image: assetUrl("projects/prda.jpeg"),
-  },
-  {
-    _id: "vms",
-    title: "VMS",
-    description: "A project included in my software development portfolio.",
-    technologies: [],
-    image: assetUrl("projects/vms.jpeg"),
-  },
-];
+const projectImageUrl = (image) =>
+  /^https?:\/\//i.test(image)
+    ? image
+    : assetUrl(image.replace(/^\/+/, ""));
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
 
   const [contactForm, setContactForm] = useState({
     name: "",
@@ -36,24 +22,83 @@ function App() {
     message: "",
   });
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
+    setContactLoading(true);
+    setContactMessage("");
+    setContactError(false);
 
-    const subject = encodeURIComponent(`Portfolio message from ${contactForm.name}`);
-    const body = encodeURIComponent(
-      `Name: ${contactForm.name}\nEmail: ${contactForm.email}\n\n${contactForm.message}`,
-    );
+    try {
+      const response = await fetch(
+        "https://aqua-compass-8483.de.deplexo.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contactForm),
+        },
+      );
 
-    window.location.assign(
-      `mailto:sawandinawodya@gmail.com?subject=${subject}&body=${body}`,
-    );
-    setContactMessage("Your email app will open with the message ready to send.");
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      setContactMessage(data.message || "Message sent successfully!");
+      setContactForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Contact error:", error);
+      setContactError(true);
+      setContactMessage(error.message || "Failed to send message.");
+    } finally {
+      setContactLoading(false);
+    }
   };
 
   const [contactMessage, setContactMessage] = useState("");
+  const [contactError, setContactError] = useState(false);
+  const [contactLoading, setContactLoading] = useState(false);
+
+  useEffect(() => {
+    if (window.location.pathname.startsWith(assetUrl("admin/"))) return;
+
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch(
+          "https://aqua-compass-8483.de.deplexo.com/api/projects",
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+
+        const data = await response.json();
+        setProjects(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Portfolio projects error:", error);
+      } finally {
+        setProjectsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   if (window.location.pathname === assetUrl("admin/login")) {
     return <AdminLogin />;
+  }
+
+  if (window.location.pathname === assetUrl("admin/dashboard")) {
+    return <AdminDashboard />;
+  }
+
+  if (window.location.pathname === assetUrl("admin/projects")) {
+    return <AdminProjects />;
+  }
+
+  if (window.location.pathname === assetUrl("admin/messages")) {
+    return <AdminMessages />;
   }
 
   return (
@@ -579,7 +624,11 @@ function App() {
           </div>
 
           {/* Project Cards */}
-          {projects.length > 0 ? (
+          {projectsLoading ? (
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-10 text-center">
+              <p className="text-slate-400">Loading projects...</p>
+            </div>
+          ) : projects.length > 0 ? (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <div
@@ -590,7 +639,7 @@ function App() {
                   <div className="flex h-48 items-center justify-center overflow-hidden bg-slate-800">
                     {project.image ? (
                       <img
-                        src={project.image}
+                        src={projectImageUrl(project.image)}
                         alt={`${project.title} project`}
                         loading="lazy"
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
@@ -611,7 +660,7 @@ function App() {
 
                     {/* Technologies */}
                     <div className="mt-5 flex flex-wrap gap-2">
-                      {project.technologies.map((technology, index) => (
+                      {project.technologies?.map((technology, index) => (
                         <span
                           key={index}
                           className="rounded-full bg-slate-800 px-3 py-1 text-sm text-cyan-400"
@@ -778,6 +827,7 @@ function App() {
                   <input
                     type="text"
                     placeholder="Your name"
+                    required
                     value={contactForm.name}
                     onChange={(e) =>
                       setContactForm({
@@ -797,6 +847,7 @@ function App() {
                   <input
                     type="email"
                     placeholder="your@email.com"
+                    required
                     value={contactForm.email}
                     onChange={(e) =>
                       setContactForm({
@@ -816,6 +867,7 @@ function App() {
                   <textarea
                     rows="5"
                     placeholder="Write your message..."
+                    required
                     value={contactForm.message}
                     onChange={(e) =>
                       setContactForm({
@@ -829,13 +881,20 @@ function App() {
 
                 <button
                   type="submit"
+                  disabled={contactLoading}
                   className="w-full rounded-lg bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Open Email App
+                  {contactLoading ? "Sending..." : "Send Message"}
                 </button>
 
                 {contactMessage && (
-                  <p className="text-center text-cyan-400">{contactMessage}</p>
+                  <p
+                    className={`text-center ${
+                      contactError ? "text-red-400" : "text-cyan-400"
+                    }`}
+                  >
+                    {contactMessage}
+                  </p>
                 )}
               </form>
             </div>

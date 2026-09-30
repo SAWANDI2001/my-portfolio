@@ -13,7 +13,7 @@ function AdminLogin() {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("https://aqua-compass-8483.de.deplexo.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function AdminLogin() {
       localStorage.setItem("adminToken", data.token);
 
       setMessage("Login successful!");
-      window.location.href = "/admin/dashboard";
+      window.location.href = `${import.meta.env.BASE_URL}admin/dashboard`;
     } catch (error) {
       console.error("Login error:", error);
       setMessage(error.message || "Login failed");

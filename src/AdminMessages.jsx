@@ -14,7 +14,7 @@ function AdminMessages() {
 
     const fetchMessages = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/messages", {
+        const response = await fetch("https://aqua-compass-8483.de.deplexo.com/api/messages", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +55,7 @@ function AdminMessages() {
       const token = localStorage.getItem("adminToken");
 
       const response = await fetch(
-        `http://localhost:5000/api/messages/${messageId}`,
+        `https://aqua-compass-8483.de.deplexo.com/api/messages/${messageId}`,
         {
           method: "DELETE",
           headers: {
@@ -110,7 +110,7 @@ function AdminMessages() {
           <button
             type="button"
             onClick={() => {
-              window.location.href = "/admin/dashboard";
+              window.location.href = `${import.meta.env.BASE_URL}admin/dashboard`;
             }}
             className="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
           >

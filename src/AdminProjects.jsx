@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 
+const projectImageUrl = (image) =>
+  /^https?:\/\//i.test(image)
+    ? image
+    : `${import.meta.env.BASE_URL}${image.replace(/^\/+/, "")}`;
+
 function AdminProjects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,13 +27,13 @@ function AdminProjects() {
     const token = localStorage.getItem("adminToken");
 
     if (!token) {
-      window.location.href = "/admin/login";
+      window.location.href = `${import.meta.env.BASE_URL}admin/login`;
       return;
     }
 
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/projects");
+        const response = await fetch("https://aqua-compass-8483.de.deplexo.com/api/projects");
 
         const data = await response.json();
 
@@ -60,7 +65,7 @@ function AdminProjects() {
     setFormLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/projects", {
+      const response = await fetch("https://aqua-compass-8483.de.deplexo.com/api/projects", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +138,7 @@ function AdminProjects() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/projects/${projectId}`,
+        `https://aqua-compass-8483.de.deplexo.com/api/projects/${projectId}`,
         {
           method: "DELETE",
           headers: {
@@ -174,7 +179,7 @@ function AdminProjects() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/projects/${editingProject._id}`,
+        `https://aqua-compass-8483.de.deplexo.com/api/projects/${editingProject._id}`,
         {
           method: "PUT",
           headers: {
@@ -245,7 +250,7 @@ function AdminProjects() {
           <button
             type="button"
             onClick={() => {
-              window.location.href = "/admin/dashboard";
+              window.location.href = `${import.meta.env.BASE_URL}admin/dashboard`;
             }}
             className="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
           >
@@ -462,7 +467,7 @@ function AdminProjects() {
                 <div className="h-48 overflow-hidden bg-slate-800">
                   {project.image ? (
                     <img
-                      src={project.image}
+                      src={projectImageUrl(project.image)}
                       alt={project.title}
                       className="h-full w-full object-cover"
                     />

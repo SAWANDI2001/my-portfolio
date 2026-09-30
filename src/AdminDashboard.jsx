@@ -25,7 +25,7 @@ function AdminDashboard() {
     const fetchStats = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/dashboard/stats",
+          "https://aqua-compass-8483.de.deplexo.com/api/dashboard/stats",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -139,7 +139,7 @@ function AdminDashboard() {
             <button
               type="button"
               onClick={() => {
-                window.location.href = "/admin/projects";
+                window.location.href = `${import.meta.env.BASE_URL}admin/projects`;
               }}
               className="mt-6 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
             >
@@ -158,7 +158,7 @@ function AdminDashboard() {
             <button
               type="button"
               onClick={() => {
-                window.location.href = "/admin/messages";
+                window.location.href = `${import.meta.env.BASE_URL}admin/messages`;
               }}
               className="mt-6 rounded-lg border border-cyan-400 px-5 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400 hover:text-slate-950"
             >
