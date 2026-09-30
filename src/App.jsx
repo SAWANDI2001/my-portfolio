@@ -1,26 +1,28 @@
 import { useState } from "react";
 
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const projects = [
   {
     _id: "grocery-grove",
     title: "Grocery Grove",
     description: "A grocery-focused application project.",
     technologies: [],
-    image: "/projects/grocery-grove.jpeg",
+    image: assetUrl("projects/grocery-grove.jpeg"),
   },
   {
     _id: "prda",
     title: "PRDA",
     description: "A project included in my software development portfolio.",
     technologies: [],
-    image: "/projects/prda.jpeg",
+    image: assetUrl("projects/prda.jpeg"),
   },
   {
     _id: "vms",
     title: "VMS",
     description: "A project included in my software development portfolio.",
     technologies: [],
-    image: "/projects/vms.jpeg",
+    image: assetUrl("projects/vms.jpeg"),
   },
 ];
 
@@ -229,7 +231,7 @@ function App() {
 
               {/* Download CV */}
               <a
-                href="/Nawodya-CV.pdf"
+                href={assetUrl("Nawodya-CV.pdf")}
                 download
                 aria-label="Download J.P.S. Nawodya CV"
                 className="rounded-lg border border-cyan-400 px-6 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400 hover:text-slate-950"
@@ -271,7 +273,7 @@ function App() {
               {/* Profile Image */}
               <div className="relative rounded-full border-4 border-cyan-400/40 p-2 shadow-2xl shadow-cyan-500/20">
                 <img
-                  src="/profile.jpeg"
+                  src={assetUrl("profile.jpeg")}
                   alt="J.P.S. Nawodya"
                   loading="eager"
                   className="h-64 w-64 rounded-full object-cover sm:h-72 sm:w-72 md:h-96 md:w-96"
